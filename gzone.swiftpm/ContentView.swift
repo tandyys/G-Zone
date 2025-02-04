@@ -11,6 +11,9 @@ struct ContentView: View {
                         .stroke(.pink, lineWidth: 2)
                         .frame(width: 300, height: 70)
                 )
+                .padding()
+            
+            Text("You can call me GoKu!")
         }
     }
 }
