@@ -14,6 +14,17 @@ struct ContentView: View {
         "Neptune is the farthest planet from the Sun and has the fastest winds in the Solar System, blowing at speeds of over 1,200 mph (1,931 km/h)—that’s faster than a jet plane! It has a giant storm called the Great Dark Spot, kind of like Jupiter’s Great Red Spot. Because it's so far away, one year on Neptune lasts 165 Earth years—that’s longer than a human lifetime! Neptune’s largest moon, Triton, is also special because it orbits backward, unlike any other large moon!",
         "The Moon is Earth's only natural satellite, and it's the fifth-largest moon in the Solar System. It’s about 1/4 the size of Earth, making it the largest moon relative to its planet. The Moon’s surface is covered in craters from space rocks hitting it, and it has no atmosphere, so it’s either super hot or freezing cold.!"
     ]
+    private let planetsGravity: [Float] = [
+        3.7,
+        8.87,
+        9.81,
+        3.721,
+        24.79,
+        10.44,
+        8.87,
+        11.15,
+        1.62
+    ]
     
     
     var body: some View {
@@ -26,7 +37,7 @@ struct ContentView: View {
                         .frame(width: 350, height: 250)
                     
                     ForEach(0..<models.count, id: \.self) { index in
-                        CreateNavigationLink(destination: models[index], planet: planets[index], planetDetail: planetsDetail[index])
+                        CreateNavigationLink(destination: models[index], planet: planets[index], planetDetail: planetsDetail[index], planetGravity: planetsGravity[index])
                     }
                 }
             }
@@ -37,8 +48,8 @@ struct ContentView: View {
         
     
     @ViewBuilder
-    func CreateNavigationLink(destination: String, planet: String, planetDetail: String) -> some View {
-        NavigationLink(destination: DetailView(scene: .init(named: destination), detailTitle : planet, detailContent : planetDetail)) {
+    func CreateNavigationLink(destination: String, planet: String, planetDetail: String, planetGravity: Float) -> some View {
+        NavigationLink(destination: DetailView(scene: .init(named: destination), detailTitle : planet, detailContent : planetDetail, planetGravity: planetGravity)) {
             Text("Explore " + planet)
                 .font(.system(size: 24, weight: .heavy))
                 .foregroundStyle(.black)

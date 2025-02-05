@@ -5,6 +5,7 @@ struct DetailView: View {
     @State var scene: SCNScene?
     var detailTitle: String
     var detailContent: String
+    var planetGravity: Float
     
     var body: some View {
         ZStack {
@@ -14,35 +15,37 @@ struct DetailView: View {
                 .ignoresSafeArea()
             
             VStack {
-                ScrollView {
-                    VStack {
-                        ModelSceneView(scene: $scene)
-                            .frame(height: 350)
-                        
-                        CreateDetailContent(title:detailTitle, content: detailContent)
+                NavigationStack {
+                    ScrollView {
+                        VStack {
+                            ModelSceneView(scene: $scene)
+                                .frame(height: 350)
+                            
+                            CreateDetailContent(title:detailTitle, content: detailContent)
+                        }
                     }
+                    
+                    CreateARNavigation()
+                        .ignoresSafeArea()
                 }
-                
-                CreateARButton()
-                    .ignoresSafeArea()
             }
         }
     }
     
     
     @ViewBuilder
-    func CreateARButton() -> some View {
-        Button(action: {
-            print("AR button tapped")
-        }, label: {
+    func CreateARNavigation() -> some View {
+        NavigationLink(destination: ARSceneView(gravity: planetGravity)) {
             Text("See the Gravity!")
-                .font(.title2)
-                .fontWeight(.semibold)
+                .font(.system(size: 24, weight: .heavy))
                 .foregroundStyle(.white)
-                .frame(maxWidth: 350, maxHeight: 50)
-                .background(RoundedRectangle(cornerRadius: 10).fill(.blue))
-        })
-        .padding(.top)
+                .frame(width: 350, height: 50)
+                .background(
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(.blue)
+                )
+                .padding(.top)
+        }
     }
     
     @ViewBuilder
@@ -66,4 +69,3 @@ struct DetailView: View {
         )
     }
 }
-
