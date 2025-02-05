@@ -31,6 +31,7 @@ struct ContentView: View {
                     CreateNavigationLink(destination: models[8], planet: "Moon", color: .gray)
                 }
             }
+            .scrollIndicators(.hidden)
         }
         .ignoresSafeArea()
     }
