@@ -7,6 +7,7 @@ struct DetailView: View {
     var detailContent: String
     var planetGravity: Float
     
+    
     var body: some View {
         ZStack {
             Image("space")
@@ -35,7 +36,7 @@ struct DetailView: View {
     
     @ViewBuilder
     func CreateARNavigation() -> some View {
-        NavigationLink(destination: ARSceneView(gravity: planetGravity)) {
+        NavigationLink(destination: ARSCNViewContainer(gravity: planetGravity)) {
             Text("See the Gravity!")
                 .font(.system(size: 24, weight: .heavy))
                 .foregroundStyle(.white)

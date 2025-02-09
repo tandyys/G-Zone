@@ -21,7 +21,7 @@ struct ContentView: View {
         3.721,
         24.79,
         10.44,
-        8.87,
+        8.69,
         11.15,
         1.62
     ]
@@ -71,6 +71,7 @@ struct ContentView: View {
         }
     }
 }
+
 
 #Preview {
     ContentView()
