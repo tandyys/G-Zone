@@ -54,7 +54,7 @@ struct ARSCNViewContainer: UIViewRepresentable {
     
     
     func addGround() -> SCNNode {
-        let ground = SCNBox(width: 2, height: 0.05, length: 2, chamferRadius: 0)
+        let ground = SCNBox(width: 2, height: 0.05, length: 3, chamferRadius: 0)
         let groundNode = SCNNode(geometry: ground)
        
         groundNode.position = SCNVector3(0, -30, -50)
